@@ -1,4 +1,5 @@
 require("dotenv").config();
+const chalk = require('chalk');
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
@@ -41,11 +42,12 @@ function concertThis(value) {
           response.data[i].venue.city +
           "\nDate of the Event: " +
           moment(dateArr[0], "MM-DD-YYYY");
-        console.log(concertResults);
+        console.log(chalk.bgRed
+        .yellow(concertResults));
       }
     })
     .catch(function(error) {
-      console.log(error);
+      console.log(chalk.bgBlack.red.error);
     });
 }
 function spotifySong(value) {
@@ -115,3 +117,4 @@ function doThis(value) {
     spotifySong(dataArr[0], dataArr[1]);
   });
 }
+console.log(chalk.bgWhite.black('A More Advanced Liri.js.'));
